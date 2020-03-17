@@ -11,12 +11,20 @@ function App() {
   const [scores, setScores] = useState(0);
   const [downs, setDowns] = useState(1);
   const [seconds, setSeconds] = useState(120);
-  const [minutes, setMinutes] = useState(1)
   const [gameStart, setGameStart] = useState(true);
+  const [toGo, setToGo] = useState(10);
   const homeTeam = 'Raiders';
   const awayTeam = 'Cowboys';
 
  
+  
+  function progress() {
+    console.log(progress)
+    setToGo(Math.random()*100 - toGo)
+    
+  }
+    
+  
 
   function adjustTime() {
     setSeconds(seconds - 5)
@@ -39,16 +47,22 @@ function App() {
 
   useEffect(() => {
     let interval = null;
-    if (gameStart) {
+    if (gameStart && seconds > 0) {
       interval = setInterval(() => {
         setSeconds(seconds => seconds - 1)
       }, 1000)
-    } 
+    } else if (gameStart && seconds === 0) {
+      if (quarter < 4) {
+        setQuarter(quarter + 1)
+      } else {
+        determineWin();
+      }
+    }
     
     return () => clearInterval(interval)
     }, [gameStart, seconds])
   
-
+  
   function moveBall() {
     if (downs < 4) {
       setDowns(downs + 1)
@@ -60,6 +74,7 @@ function App() {
   function advanceGame() {
     setScores(scores + 1)
     adjustTime();
+    progress();
     console.log("Scores per quarter: " + scores)
     if (scores === 3) {
       setScores(0);

@@ -31,7 +31,7 @@ function App() {
     }
   }
   function newQuarter() {
-    setSeconds(seconds * 0 + 30);
+    setSeconds(seconds * 0 + 120);
   }
   function startGame() {
     setGameStart(gameStart)
@@ -74,7 +74,7 @@ function App() {
         setHomeScore(homeScore * 0);
         setAwayScore(awayScore * 0);
         setDowns(downs * 0);
-        setSeconds(seconds * 0 + 30);
+        setSeconds(seconds * 0 + 120);
         determineWin();
         
         

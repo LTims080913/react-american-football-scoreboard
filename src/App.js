@@ -10,7 +10,7 @@ function App() {
   const [quarter, setQuarter] = useState(1);
   const [scores, setScores] = useState(0);
   const [downs, setDowns] = useState(1);
-  const [seconds, setSeconds] = useState(120);
+  const [seconds, setSeconds] = useState(60);
   const [gameStart, setGameStart] = useState(true);
   const [toGo, setToGo] = useState(10);
   const homeTeam = 'Raiders';
@@ -39,7 +39,7 @@ function App() {
     }
   }
   function newQuarter() {
-    setSeconds(seconds * 0 + 120);
+    setSeconds(seconds * 0 + 60);
   }
   function startGame() {
     setGameStart(gameStart)
@@ -51,12 +51,11 @@ function App() {
       interval = setInterval(() => {
         setSeconds(seconds => seconds - 1)
       }, 1000)
-    } else if (gameStart && seconds === 0) {
-      if (quarter < 4) {
-        setQuarter(quarter + 1)
-      } else {
-        determineWin();
-      }
+    } else if (gameStart && seconds === 0 && quarter < 4) {
+      setQuarter(quarter + 1);
+      newQuarter();
+    } else if (gameStart && seconds === 0 && quarter === 4) {
+      determineWin();
     }
     
     return () => clearInterval(interval)
@@ -89,7 +88,7 @@ function App() {
         setHomeScore(homeScore * 0);
         setAwayScore(awayScore * 0);
         setDowns(downs * 0);
-        setSeconds(seconds * 0 + 120);
+        setSeconds(seconds * 0 + 60);
         determineWin();
         
         

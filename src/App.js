@@ -56,6 +56,11 @@ function App() {
       newQuarter();
     } else if (gameStart && seconds === 0 && quarter === 4) {
       determineWin();
+      setQuarter(quarter * 0);
+      setHomeScore(homeScore * 0);
+      setAwayScore(awayScore * 0);
+      setDowns(downs * 0);
+      setSeconds(seconds * 0 + 60);
     }
     
     return () => clearInterval(interval)

@@ -49,6 +49,10 @@
   text-transform: uppercase;
   font-size: 3rem;
   padding: 2rem;
+  /* @media screen(500px) {
+    font-size: 2rem;
+    padding: 1rem;
+  } */
 }
 
 .home__score,
@@ -103,6 +107,12 @@
   border-radius: 4px;
   padding: 1.6rem;
   border: 1px solid white;
+  /* @media screen(500px){
+    padding: 0.6rem;
+    width: 5rem;
+    font-size: 4rem;
+    
+  } */
 }
 
 .buttons {
@@ -118,4 +128,5 @@
 .awayButtons__fieldGoal {
   margin: 1rem;
   border-radius: 4px;
+  
 }
